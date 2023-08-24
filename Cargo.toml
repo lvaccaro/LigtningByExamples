@@ -1,11 +1,10 @@
 [package]
-name = "Ligtning by Examples"
+name = "Lightning by Examples"
 version = "0.1.0"
 edition = "2021"
-description = "Test and rust script ro experiment and learning lightningd stuff."
+description = "Rudimental examples to learn the bitcoin & ligthning world with rust."
 license = "MIT"
-repository = "https://github.com/lvaccaro/lightningd-examples"
-documentation = "https://docs.rs/lightningd/"
+repository = "https://github.com/lvaccaro/lightning_by_examples"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

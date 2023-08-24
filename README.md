@@ -1,4 +1,4 @@
-Ligtning by Examples
+Lightning by Examples
 ===
 
 **WARNING - Early-stage software, do not use with real bitcoins.**
