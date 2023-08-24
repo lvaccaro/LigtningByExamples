@@ -1,5 +1,5 @@
 [package]
-name = "lightningd-examples"
+name = "Ligtning by Examples"
 version = "0.1.0"
 edition = "2021"
 description = "Test and rust script ro experiment and learning lightningd stuff."
