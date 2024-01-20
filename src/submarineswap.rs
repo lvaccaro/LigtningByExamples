@@ -56,7 +56,7 @@ fn btc<F: Into<f64>>(btc: F) -> Amount {
 }
 
 // Find the Outpoint by spk
-fn get_vout(cl: &Client, txid: Txid, value: u64, spk: ScriptBuf) -> (OutPoint, TxOut) {
+fn get_vout(cl: &Client, txid: Txid, value: Amount, spk: ScriptBuf) -> (OutPoint, TxOut) {
     let tx = cl
         .get_transaction(&txid, None)
         .unwrap()
@@ -113,13 +113,13 @@ fn main() {
 
     // Import wallets
     let checksum = bitcoind.client.get_descriptor_info(&format!("addr({})", alice_address)).unwrap().checksum;
-    let alice_descriptor = format!("addr({})#{}", alice_address, checksum);
+    let alice_descriptor = format!("addr({})#{:?}", alice_address, checksum);
     alice.import_descriptors(json::ImportDescriptors { 
         descriptor: alice_descriptor, 
         ..Default::default()
     }).unwrap();
     let checksum = bitcoind.client.get_descriptor_info(&format!("addr({})", bob_address)).unwrap().checksum;
-    let bob_descriptor = format!("addr({})#{}", bob_address, checksum);
+    let bob_descriptor = format!("addr({})#{:?}", bob_address, checksum);
     bob.import_descriptors(json::ImportDescriptors { 
         descriptor: bob_descriptor, 
         ..Default::default()
@@ -214,9 +214,9 @@ fn main() {
     println!("ln pay bob -> charlie {:?}", ln_bob_pay);
 
     // bob create psbt
-    let (outpoint, witness_utxo) = get_vout(&dummy, txid, 10_000, htlc_descriptor.script_pubkey());
+    let (outpoint, witness_utxo) = get_vout(&dummy, txid, Amount::from_sat(10_000), htlc_descriptor.script_pubkey());
     let tx = Transaction {
-            version: 2,
+            version: bitcoin::transaction::Version(2),
             lock_time: bitcoin::absolute::LockTime::ZERO,
             input: vec![TxIn {
                 previous_output: outpoint,
@@ -226,7 +226,7 @@ fn main() {
             }],
             output: vec![
                 TxOut {
-                    value: 9_000,
+                    value: Amount::from_sat(9_000),
                     script_pubkey: dummy_address.script_pubkey(),
                 }
             ],
