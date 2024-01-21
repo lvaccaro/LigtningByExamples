@@ -13,7 +13,13 @@ It is based on:
   * [clightningrpc](https://github.com/laanwj/cln4rust)
 
 ### Submarine swap
-Swap BTC for lightning BTC with an HTLC.
+Swap onchain BTC to lightning BTC, with HTLC.
 ```
 cargo run --bin submarineswap
+```
+
+### Reverse submarine swap
+Swap lightning BTC to onchain BTC, with an HTLC (without hold invoice).
+```
+cargo run --bin reverseswap
 ```

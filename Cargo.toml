@@ -18,7 +18,12 @@ serde = { version = "1.0", optional = true }
 hex = "0.4.3"
 log = "0.4"
 base64 = "0.21.2"
+rand = "0.5.0"
 
 [[bin]]
 name = "submarineswap"
 path = "src/submarineswap.rs"
+
+[[bin]]
+name = "reverseswap"
+path = "src/reverseswap.rs"
